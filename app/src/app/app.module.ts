@@ -8,6 +8,9 @@ import { LoginComponent } from './Pages/login/login.component';
 import { SearchComponent } from './Components/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {AppMaterialModule} from './app-material/app-material.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
