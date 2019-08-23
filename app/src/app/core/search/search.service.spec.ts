@@ -7,7 +7,7 @@ import {
 import { SearchService } from './search.service';
 import { Subscription } from 'rxjs';
 
-import { DeputiesInfo } from '../../model';
+import { DeputiesInfo, Filter } from '../../model';
 
 import * as mock from '../../../mocks/deputies';
 import { HttpRequest } from '@angular/common/http';
@@ -35,9 +35,19 @@ describe('SearchService', () => {
     }
   });
 
-  describe('getByName()', () => {
+  describe('getDeputies()', () => {
+    it('should create a request without params when no one is provided', (done: DoneFn) => {
+      subscription$ = searchService.getDeputies().subscribe(() => done());
+
+      httpTestingController.expectOne((req: HttpRequest<any>) => {
+        expect(req.params.keys().length).toBe(0);
+        return true;
+      }).flush(mock.deputiesInfoList);
+    });
+
     it('should create a request with name as params', (done: DoneFn) => {
-      subscription$ = searchService.getByName(mock.name).subscribe(() => done());
+      const filter: Filter = { name: mock.name };
+      subscription$ = searchService.getDeputies(filter).subscribe(() => done());
 
       httpTestingController.expectOne((req: HttpRequest<any>) => {
         expect(req.params.has('name')).toBe(true);
@@ -46,8 +56,11 @@ describe('SearchService', () => {
       }).flush(mock.deputiesInfoList);
     });
 
+
     it('should get a list of deputies with length of 2', () => {
-      subscription$ = searchService.getByName(mock.name).subscribe((deputiesInfo: DeputiesInfo[]) => {
+      const filter: Filter = { name: mock.name };
+
+      subscription$ = searchService.getDeputies(filter).subscribe((deputiesInfo: DeputiesInfo[]) => {
         expect(deputiesInfo.length).toBe(2);
       });
 
@@ -58,7 +71,9 @@ describe('SearchService', () => {
     });
 
     it('should get a list of deputies with all properties of Deputies Info', () => {
-      subscription$ = searchService.getByName(mock.name).subscribe((deputiesInfo: DeputiesInfo[]) => {
+      const filter: Filter = { name: mock.name };
+
+      subscription$ = searchService.getDeputies(filter).subscribe((deputiesInfo: DeputiesInfo[]) => {
         deputiesInfo.forEach((deputieInfo: DeputiesInfo) => {
           expect(deputieInfo.email).toBeDefined();
           expect(deputieInfo.id).toBeDefined();
@@ -81,11 +96,12 @@ describe('SearchService', () => {
     });
 
     it('should return an empty DeputiesInfo array when system throws an exception', () => {
+      const filter: Filter = { name: mock.name };
       const errorMessage = new ErrorEvent('NetworkError', {
         message: mock.errorMessage,
       });
 
-      subscription$ = searchService.getByName(mock.name).subscribe((deputiesInfo: DeputiesInfo[]) => {
+      subscription$ = searchService.getDeputies(filter).subscribe((deputiesInfo: DeputiesInfo[]) => {
         expect(deputiesInfo.length).toBe(0);
       });
 
@@ -95,7 +111,9 @@ describe('SearchService', () => {
     });
 
     it('should return an empty DeputiesInfo array if no result is returned', () => {
-      subscription$ = searchService.getByName(mock.name).subscribe((deputiesInfo: DeputiesInfo[]) => {
+      const filter: Filter = { name: mock.name };
+
+      subscription$ = searchService.getDeputies(filter).subscribe((deputiesInfo: DeputiesInfo[]) => {
         expect(deputiesInfo.length).toBe(0);
       });
 

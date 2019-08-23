@@ -4,8 +4,7 @@ import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
 
-import { DeputiesInfo } from 'src/app/model/deputies';
-import { Params } from '../../model/params';
+import { DeputiesInfo, Params, Filter } from 'src/app/model';
 
 @Injectable()
 export class SearchService {
@@ -13,17 +12,18 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  createHttpParams(options: Params[]): { params: HttpParams } {
-    const httpParams = options.reduce((params: HttpParams, option: Params) => (
-      params.append(option.key, option.value)
-    ), new HttpParams());
+  createOptions(filter: Filter): { params: HttpParams } {
+    let httpParams = new HttpParams();
+
+    Object.entries(filter).forEach(([key, value]) => {
+      httpParams = httpParams.append(key, value);
+    });
 
     return { params: httpParams };
   }
 
-  getByName(name: string): Observable<DeputiesInfo[]> {
-    const params = [new Params('name', name)];
-    const options = this.createHttpParams(params);
+  getDeputies(filter: Filter = {}): Observable<DeputiesInfo[]> {
+    const options = this.createOptions(filter);
 
     return this.http.get(this.API_URL, options)
       .pipe(
