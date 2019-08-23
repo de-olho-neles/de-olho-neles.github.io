@@ -9,6 +9,8 @@ import { SearchComponent } from './Components/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {AppMaterialModule} from './app-material/app-material.module';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import {AppMaterialModule} from './app-material/app-material.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    CoreModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
