@@ -15,8 +15,7 @@ import {AppMaterialModule} from './app-material/app-material.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './Components/Search/search.component';
-
-
+import { DataService } from './shared/dataService';
 
 
 @NgModule({
@@ -35,7 +34,9 @@ import { SearchComponent } from './Components/Search/search.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
