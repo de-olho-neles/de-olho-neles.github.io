@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeOlhoNeles.Data.Entities
+namespace server.Data.Entities
 {
     public class Orgao
     {

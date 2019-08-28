@@ -1,4 +1,4 @@
-﻿using DeOlhoNeles.Data.Entities;
+﻿using server.Data.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace DeOlhoNeles.Data
+namespace server.Data
 {
     public class Repository
     {

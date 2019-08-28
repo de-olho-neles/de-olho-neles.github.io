@@ -1,4 +1,4 @@
-﻿using DeOlhoNeles.Data;
+﻿using server.Data;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeOlhoNeles.Controllers
+namespace server.Controllers
 {
     [Route("api/[controller]")]
     public class DeputadoController : Controller

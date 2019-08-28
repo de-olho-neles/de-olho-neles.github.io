@@ -1,5 +1,5 @@
-﻿using DeOlhoNeles.Data;
-using DeOlhoNeles.Data.Entities;
+﻿using server.Data;
+using server.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeOlhoNeles.Controllers
+namespace server.Controllers
 {
     [Route("api/[controller]")]
     public class SearchController : Controller

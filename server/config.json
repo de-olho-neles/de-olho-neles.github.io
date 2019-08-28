@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "UserConnectionString": "server=(localdb)\\mssqllocaldb;Database=UserDb;Integrated Security=true;MultipleActiveResultSets=true;"
+  }
+}
