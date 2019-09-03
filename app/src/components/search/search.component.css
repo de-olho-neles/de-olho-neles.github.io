@@ -1,0 +1,27 @@
+input, input:focus {
+    background: #F1FEC6;
+    border-color: #FB6107;
+    color: #FB6107;
+}
+
+::placeholder {
+    color: #FB6107;
+}
+
+#go {
+    background: #F1FEC6;
+    border-color: #FB6107;
+    color: #FB6107;
+}
+
+button, button:focus {
+    background-color: #F1FEC6;
+    border-color: #FB6107;
+    color: #FB6107;
+}
+
+select, option {
+    background-color: #F1FEC6;
+    border-color: #FB6107;
+    color: #FB6107;
+}

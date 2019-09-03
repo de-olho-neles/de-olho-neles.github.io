@@ -1,0 +1,8 @@
+.toApplyStyles {
+    background: #B6D6CC;
+    border-color: #FB6107;
+    color: #FB6107;
+}
+.toApplyStyles.btn {
+    background: #F1FEC6;
+}

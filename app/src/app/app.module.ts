@@ -1,42 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-// PAGES
-import { HomeComponent } from './Pages/home/home.component';
-import { ListComponent } from './Pages/list/list.component';
-import { LoginComponent } from './Pages/login/login.component';
-
-import {AppMaterialModule} from './app-material/app-material.module';
-import { CoreModule } from './core/core.module';
+import { FormsModule } from '@angular/forms';
+import { DataService } from '../shared/dataService';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchComponent } from './Components/Search/search.component';
-import { DataService } from './shared/dataService';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SearchComponent } from '../components/search/search.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { SearchListComponent } from '../components/search-list/search-list.component';
+import { ListResultComponent } from '../components/list-result/list-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    HomeComponent,
-    ListComponent,
-    LoginComponent
+    HeaderComponent,
+    SearchListComponent,
+    ListResultComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    AppMaterialModule,
-    CoreModule,
-    HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [
-    DataService
-  ],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

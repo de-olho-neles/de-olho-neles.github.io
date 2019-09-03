@@ -53,33 +53,50 @@ namespace server.Data
             return data;
         }
 
-        internal List<Deputado> FilterDeputadoList(string name, string partido, string uf)
+        internal List<Deputado> FilterDeputadoList(string name, string partido, string estado)
         {
             List<Deputado> deputados = GetAllDeputados();
-            List<Deputado> matchingDeputados = new List<Deputado>();
+            List<Deputado> matchingDeputados = deputados;
             List<Deputado> filteredDeputados = new List<Deputado>();
 
-            foreach (Deputado deputado in deputados)
-            {
-                //Getting list of matching names first
-                if (deputado.nome.ToLower().Contains(name.ToLower()))
-                {
-                    matchingDeputados.Add(deputado);
-                }
-
-            }
-
-            //checking if there are any filters so we don't iterate for nothing
-            if (partido != "" || uf != "")
+            if (name != "")
             {
                 foreach (Deputado deputado in matchingDeputados)
                 {
-                    //Filtering the result from name search
-                    if ((partido != "") && (deputado.siglaPartido.ToLower().Contains(partido.ToLower())))
+                    //Getting list of matching names first
+                    if (deputado.nome.ToLower().Contains(name.ToLower()))
                     {
                         filteredDeputados.Add(deputado);
                     }
-                    if ((uf != "") && (deputado.siglaUf.ToLower().Contains(uf.ToLower())))
+
+                }
+            }
+            else { filteredDeputados = matchingDeputados; }
+
+            //checking if there are any filters so we don't iterate for nothing
+            if (partido != "")
+            {
+                matchingDeputados = filteredDeputados;
+                filteredDeputados = new List<Deputado>();
+                foreach (Deputado deputado in matchingDeputados)
+                {
+                    //Filtering the result from name search
+                    if (deputado.siglaPartido.ToLower().Contains(partido.ToLower()))
+                    {
+                        filteredDeputados.Add(deputado);
+                    }
+                }
+            }
+            else { filteredDeputados = matchingDeputados; }
+
+            if (estado != "")
+            {
+                matchingDeputados = filteredDeputados;
+                filteredDeputados = new List<Deputado>();
+                foreach (Deputado deputado in matchingDeputados)
+                {
+                    //Filtering the result from name search
+                    if (deputado.siglaUf.ToLower().Contains(estado.ToLower()))
                     {
                         filteredDeputados.Add(deputado);
                     }
@@ -132,6 +149,22 @@ namespace server.Data
             string url = "https://dadosabertos.camara.leg.br/api/v2/deputados/" + id + "/orgaos";
             List<Orgao> data = GetFullJsonResponse(url).ToObject<List<Orgao>>();
             return data;
+        }
+
+        internal List<String> GetPartidosList()
+        {
+            string url = "https://dadosabertos.camara.leg.br/api/v2/partidos";
+            List<Partido> data = GetFullJsonResponse(url).ToObject<List<Partido>>();
+            var v = data.Select(x => x.sigla).ToList();
+            return v;
+        }
+
+        internal List<String> GetEstadosList()
+        {
+            string url = "https://dadosabertos.camara.leg.br/api/v2/referencias/uf";
+            List<Estado> data = GetFullJsonResponse(url).ToObject<List<Estado>>();
+            var v = data.Select(x => x.sigla).ToList();
+            return v;
         }
     }
 }

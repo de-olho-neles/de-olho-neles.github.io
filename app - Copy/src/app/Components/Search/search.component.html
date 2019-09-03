@@ -1,0 +1,6 @@
+<div fxLayout="row">
+    <input type="text" #searchQuery (keydown)="onKey($event)">
+    <button (click)="onSearchClick(searchQuery)">
+        <mat-icon matSuffix>search</mat-icon>
+    </button>
+</div>

@@ -22,15 +22,41 @@ namespace server.Controllers
 
 
         [HttpGet]
-        public IActionResult Index(string name = "", string partido = "", string uf = "")
+        public IActionResult Index(string name = "", string partido = "", string estado = "")
         {
             try
             {
-                return Ok(_repository.FilterDeputadoList(name, partido, uf));
+                return Ok(_repository.FilterDeputadoList(name, partido, estado));
             }
             catch (Exception ex)
             {
                 return BadRequest($"Não foi possível pesquisar :c -> {ex}");
+            }
+        }
+
+        [HttpGet("estados")]
+        public IActionResult Estados()
+        {
+            try
+            {
+                return Ok(_repository.GetEstadosList());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Não foi possível encontrar os estados :c -> {ex}");
+            }
+        }
+
+        [HttpGet("partidos")]
+        public IActionResult Partidos()
+        {
+            try
+            {
+                return Ok(_repository.GetPartidosList());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Não foi possível encontrar os partidos :c -> {ex}");
             }
         }
     }

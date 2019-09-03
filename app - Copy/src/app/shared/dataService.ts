@@ -23,4 +23,14 @@ export class DataService {
       );
   }
 
+  searchDeputados(name: string): Observable<boolean> {
+    return this.http.get("/api/search"+"?"+"name="+name)
+      .pipe(
+        map((data: any[]) => {
+          this.deputados = data;
+          return true;
+        })
+      );
+  }
+
 }

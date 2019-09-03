@@ -1,0 +1,15 @@
+<div class="mb-3 toApplyStyles py-3 card" style="max-width: 600px;">
+    <div class="row no-gutters toApplyStyles px-3">
+        <div class="col-md-3 align-self-center pr-3">
+            <img src={{deputado.urlFoto}} class="card-img">
+        </div>
+        <div class="col-md-8 toApplyStyles align-self-center">
+            <p class="mb-2">{{deputado.nome}}</p>
+            <p class="mb-2">Id: <a href={{deputado.nome}}>{{deputado.id}}</a></p>
+            <p class="mb-2">Partido: <a href={{deputado.uriPartido}}>{{deputado.siglaPartido}}</a></p>
+            <p class="mb-2">Estado: {{deputado.siglaUf}}</p>
+            <p class="mb-0">Email: {{deputado.email}}</p>
+        </div>
+        <button class="btn align-self-center toApplyStyles col-md-1">»</button>
+    </div>
+</div>

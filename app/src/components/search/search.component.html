@@ -1,0 +1,45 @@
+<div class="d-inline-flex">
+
+    <div class="input-group mb-3">
+        <input type="text" (keydown.enter)="searchButtonClicked()" class="form-control" placeholder="Deputado's name"
+            [(ngModel)]="searchText">
+        <div class="input-group-append" style="cursor: pointer" (click)="searchButtonClicked()">
+            <span class="input-group-text" id="go">Go!</span>
+        </div>
+    </div>
+</div>
+
+<div class="d-inline-flex">
+
+    <div class="px-2">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn" type="button" data-toggle="collapse"
+                    data-target=".dropTartget1">Partido</button>
+            </div>
+            <select class="custom-select dropTartget1 collapse" aria-label="Example select with button addon"
+                [(ngModel)]="partido" id="partidoOption">
+                <option value="PT" selected>PT</option>
+                <option value="PSOL">PSOL</option>
+                <option value="PTSD">PTSD</option>
+                <option value="PP">PP</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="px-2">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn" type="button" data-toggle="collapse"
+                    data-target=".dropTartget2">Estado</button>
+            </div>
+            <select class="custom-select dropTartget2 collapse" aria-label="Example select with button addon"
+                [(ngModel)]="estado" id="estadoOption">
+                <option value="GO" selected>GO</option>
+                <option value="EH">EH</option>
+                <option value="BAO">BAO</option>
+                <option value="DMS">DMS</option>
+            </select>
+        </div>
+    </div>
+</div>
