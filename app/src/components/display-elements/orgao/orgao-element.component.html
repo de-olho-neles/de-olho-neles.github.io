@@ -1,0 +1,18 @@
+<div class="accordion mw-10" id="accordion">
+    <div *ngFor="let orgao of orgaos" class="card">
+        <div class="card-header" [attr.id]="'headingOne'+orgao.idOrgao">
+            <button class="btn btn-sm" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+orgao.idOrgao" aria-expanded="false"
+                aria-controls="collapseOne">+</button>
+            <h5 class="ml-3 d-inline">{{orgao.siglaOrgao}}</h5>
+        </div>
+
+        <div [attr.id]="'collapse'+orgao.idOrgao" class="collapse" [attr.aria-labelledby]="'headingOne'+orgao.idOrgao" data-parent="#accordion">
+            <div class="card-body">
+                <p>ID: {{orgao.idOrgao}}</p>
+                <p>Titulo: {{orgao.titulo}} - {{orgao.codTitulo}}</p>
+                <p>URL do Partido: <a href="{{orgao.uriOrgao}}" target="_blank">{{orgao.uriOrgao}}</a></p>
+                <p>Descrição do orgão: {{orgao.nomeOrgao}}</p>
+            </div>
+        </div>
+    </div>
+</div>

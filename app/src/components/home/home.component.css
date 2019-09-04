@@ -1,0 +1,14 @@
+.toApplyStyles {
+    margin-bottom: 0px;
+    background-color: #B6D6CC;
+    border: solid 1px #FB6107;
+    color: #FB6107;
+}
+
+.toApplyStyles a {
+    background-color: #F1FEC6;
+}
+
+hr {
+    border-color: rgba(251, 97, 7, 0.5);
+}

@@ -1,6 +1,8 @@
 <div class="row py-5">
-    <div class="mx-auto">
-        <p *ngIf="loading"> Loading . . .</p>
-        <list-result *ngFor="let deputie of deputados" [deputado]=deputie ></list-result>
+    <div class="mx-auto" *ngIf="loading">
+        <loading-animation></loading-animation>
+    </div>
+    <div class="mx-auto" *ngIf="!loading">
+        <list-result *ngFor="let deputie of deputados" [deputado]=deputie col-md-5></list-result>
     </div>
 </div>

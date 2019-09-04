@@ -1,0 +1,103 @@
+<div class="row mx-5 my-5 toApplyStyles py-5">
+    <div class="mx-auto" *ngIf="loadingBasics">
+        <loading-animation></loading-animation>
+    </div>
+
+    <div *ngIf="!loadingBasics" class="offset-md-1 px-0">
+
+        <div class="row">
+            <div>
+                <img src="{{detailedDeputado.ultimoStatus.urlFoto}}"
+                    alt="Foto do deputado {{detailedDeputado.nomeCivil}}">
+            </div>
+            <div class="ml-3">
+                <h3 class="colorApply m-0">{{detailedDeputado.nomeCivil}}</h3>
+                <p class="lead colorApply">{{detailedDeputado.ultimoStatus.siglaPartido}} -
+                    {{detailedDeputado.ultimoStatus.siglaUf}}</p>
+                <p class="lead colorApply">{{detailedDeputado.email}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <ul class="nav nav-pills mt-5" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-ficha-tab" data-toggle="pill" href="#pills-ficha" role="tab"
+                        aria-controls="pills-ficha" aria-selected="true">Ficha</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-despesas-tab" data-toggle="pill" href="#pills-despesas" role="tab"
+                        aria-controls="pills-despesas" aria-selected="false">Despesas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-frentes-tab" data-toggle="pill" href="#pills-frentes" role="tab"
+                        aria-controls="pills-frentes" aria-selected="false">Frentes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-orgaos-tab" data-toggle="pill" href="#pills-orgaos" role="tab"
+                        aria-controls="pills-orgaos" aria-selected="false">Orgãos</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row mt-3">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-ficha" role="tabpanel"
+                    aria-labelledby="pills-ficha-tab">
+                    <div class="ficha p-3">
+                        <!-- Clearly I still have to sort this out -->
+                        <p>condicaoEleitoral: {{detailedDeputado.ultimoStatus.condicaoEleitoral}}</p>
+                        <p>data: {{detailedDeputado.ultimoStatus.data}}</p>
+                        <p>descricaoStatus: {{detailedDeputado.ultimoStatus.descricaoStatus}}</p>
+                        <p>email: {{detailedDeputado.ultimoStatus.email}}</p>
+                        <p>gabinete: {{detailedDeputado.ultimoStatus.gabinete}}</p>
+                        <p>id: {{detailedDeputado.ultimoStatus.id}}</p>
+                        <p>idLegislatura: {{detailedDeputado.ultimoStatus.idLegislatura}}</p>
+                        <p>nome: {{detailedDeputado.ultimoStatus.nome}}</p>
+                        <p>nomeEleitoral: {{detailedDeputado.ultimoStatus.nomeEleitoral}}</p>
+                        <p>siglaPartido: {{detailedDeputado.ultimoStatus.siglaPartido}}</p>
+                        <p>siglaUf: {{detailedDeputado.ultimoStatus.siglaUf}}</p>
+                        <p>situacao: {{detailedDeputado.ultimoStatus.situacao}}</p>
+                        <p>uri: {{detailedDeputado.ultimoStatus.uri}}</p>
+                        <p>uriPartido: {{detailedDeputado.ultimoStatus.uriPartido}}</p>
+                        <p>urlFoto: {{detailedDeputado.ultimoStatus.urlFoto}}</p>
+                        <p>cpf: {{detailedDeputado.cpf}}</p>
+                        <p>dataFalecimento: {{detailedDeputado.dataFalecimento}}</p>
+                        <p>dataNascimento: {{detailedDeputado.dataNascimento}}</p>
+                        <p>email: {{detailedDeputado.email}}</p>
+                        <p>escolaridade: {{detailedDeputado.escolaridade}}</p>
+                        <p>id: {{detailedDeputado.id}}</p>
+                        <p>municipioNascimento: {{detailedDeputado.municipioNascimento}}</p>
+                        <p>nomeCivil: {{detailedDeputado.nomeCivil}}</p>
+                        <p>redeSocial: {{detailedDeputado.redeSocial}}</p>
+                        <p>sexo: {{detailedDeputado.sexo}}</p>
+                        <p>ufNascimento: {{detailedDeputado.ufNascimento}}</p>
+                        <p>ultimoStatus: {{detailedDeputado.ultimoStatus}}</p>
+                        <p>uri: {{detailedDeputado.uri}}</p>
+                        <p>urlWebsite: {{detailedDeputado.urlWebsite}}</p>
+                        <p>despesas: {{detailedDeputado.despesas}}</p>
+                        <p>frentes: {{detailedDeputado.frentes}}</p>
+                        <p>orgaos: {{detailedDeputado.orgaos}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-despesas" role="tabpanel" aria-labelledby="pills-despesas-tab">
+                    <loading-animation *ngIf="loadingDespesas"></loading-animation>
+                    <div *ngIf="!loadingDespesas">
+                        <despesa-element [despesas]=detailedDeputado.despesas></despesa-element>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-frentes" role="tabpanel" aria-labelledby="pills-frentes-tab">
+                    <loading-animation *ngIf="loadingFrentes"></loading-animation>
+                    <div *ngIf="!loadingFrentes">
+                        <frente-element [frentes]=detailedDeputado.frentes></frente-element>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-orgaos" role="tabpanel" aria-labelledby="pills-orgaos-tab">
+                    <loading-animation *ngIf="loadingOrgaos"></loading-animation>
+                    <div *ngIf="!loadingOrgaos">
+                        <orgao-element [orgaos]=detailedDeputado.orgaos></orgao-element>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

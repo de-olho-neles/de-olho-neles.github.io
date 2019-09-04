@@ -1,0 +1,29 @@
+button {
+    background-color: #F1FEC6;
+    border: 1px solid #FB6107;
+    border-radius: 5px;
+    color: #FB6107;
+}
+
+.card-header {
+    background-color: #F1FEC6;
+
+    color: #FB6107;
+}
+
+.card {
+    background-color: #F1FEC6;
+    border: 1px solid #FB6107;
+    border-bottom: 0px;
+    color: #FB6107;
+}
+
+.card-body {
+    background-color: #B6D6CC;
+
+    color: #FB6107;
+}
+
+.accordion {
+    margin-right: 8em;
+}

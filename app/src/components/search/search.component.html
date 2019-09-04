@@ -18,11 +18,8 @@
                     data-target=".dropTartget1">Partido</button>
             </div>
             <select class="custom-select dropTartget1 collapse" aria-label="Example select with button addon"
-                [(ngModel)]="partido" id="partidoOption">
-                <option value="PT" selected>PT</option>
-                <option value="PSOL">PSOL</option>
-                <option value="PTSD">PTSD</option>
-                <option value="PP">PP</option>
+                [(ngModel)]="partido" id="partidoOption" *ngIf="isPartidosLoaded">
+                <option *ngFor="let Partido of partidos" [value]=Partido>{{Partido}}</option>
             </select>
         </div>
     </div>
@@ -34,11 +31,8 @@
                     data-target=".dropTartget2">Estado</button>
             </div>
             <select class="custom-select dropTartget2 collapse" aria-label="Example select with button addon"
-                [(ngModel)]="estado" id="estadoOption">
-                <option value="GO" selected>GO</option>
-                <option value="EH">EH</option>
-                <option value="BAO">BAO</option>
-                <option value="DMS">DMS</option>
+                [(ngModel)]="estado" id="estadoOption"  *ngIf="isEstadosLoaded">
+                <option *ngFor="let Estado of estados" [value]=Estado>{{Estado}}</option>
             </select>
         </div>
     </div>

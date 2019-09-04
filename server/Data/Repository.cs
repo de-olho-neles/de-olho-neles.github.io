@@ -56,54 +56,18 @@ namespace server.Data
         internal List<Deputado> FilterDeputadoList(string name, string partido, string estado)
         {
             List<Deputado> deputados = GetAllDeputados();
-            List<Deputado> matchingDeputados = deputados;
             List<Deputado> filteredDeputados = new List<Deputado>();
 
-            if (name != "")
+            //Is only added to the filtered collection if satisfies all search parameters (default values allow empty fields to not break this)
+            foreach (Deputado deputado in deputados)
             {
-                foreach (Deputado deputado in matchingDeputados)
+                if ((deputado.nome.ToLower().Contains(name.ToLower())) &&
+                    (deputado.siglaPartido.ToLower().Contains(partido.ToLower())) &&
+                    (deputado.siglaUf.ToLower().Contains(estado.ToLower()))                    )
                 {
-                    //Getting list of matching names first
-                    if (deputado.nome.ToLower().Contains(name.ToLower()))
-                    {
-                        filteredDeputados.Add(deputado);
-                    }
-
+                    filteredDeputados.Add(deputado);
                 }
             }
-            else { filteredDeputados = matchingDeputados; }
-
-            //checking if there are any filters so we don't iterate for nothing
-            if (partido != "")
-            {
-                matchingDeputados = filteredDeputados;
-                filteredDeputados = new List<Deputado>();
-                foreach (Deputado deputado in matchingDeputados)
-                {
-                    //Filtering the result from name search
-                    if (deputado.siglaPartido.ToLower().Contains(partido.ToLower()))
-                    {
-                        filteredDeputados.Add(deputado);
-                    }
-                }
-            }
-            else { filteredDeputados = matchingDeputados; }
-
-            if (estado != "")
-            {
-                matchingDeputados = filteredDeputados;
-                filteredDeputados = new List<Deputado>();
-                foreach (Deputado deputado in matchingDeputados)
-                {
-                    //Filtering the result from name search
-                    if (deputado.siglaUf.ToLower().Contains(estado.ToLower()))
-                    {
-                        filteredDeputados.Add(deputado);
-                    }
-                }
-            }
-            //If there are no filters we just return the same list
-            else { filteredDeputados = matchingDeputados; }
 
             if (filteredDeputados.Any())
             {
@@ -115,16 +79,16 @@ namespace server.Data
             }
         }
 
-        internal DetailedDeputado GetDeputadoById(int id)
+        internal DetailedDeputado GetDeputadoById(int id, bool populateDespesas, bool populateFrentes, bool populateOrgaos)
         {
             WebClient client = new WebClient();
             string url = "https://dadosabertos.camara.leg.br/api/v2/deputados/" + id;
             JObject parsedResult = JObject.Parse(client.DownloadString(url));
             DetailedDeputado data = parsedResult["dados"].ToObject<DetailedDeputado>();
 
-            data.despesas = GetDespesasFromDeputado(id);
-            data.frentes = GetFrentesFromDeputado(id);
-            data.orgaos = GetOrgaosFromDeputado(id);
+            if (populateDespesas) { data.despesas = GetDespesasFromDeputado(id);}
+            if (populateFrentes) {data.frentes = GetFrentesFromDeputado(id);}
+            if (populateOrgaos) {data.orgaos = GetOrgaosFromDeputado(id);}
 
 
             return data;

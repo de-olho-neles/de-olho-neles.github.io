@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from "rxjs";
 import { Deputado } from "./deputado";
+import { DetailedDeputado } from './detailedDeputado';
 
 @Injectable({
     providedIn: "root"
@@ -12,8 +13,6 @@ export class DataService {
     constructor(private http: HttpClient) { }
 
     public deputados: Deputado[] = [];
-    public partidos: string[] = [];
-    public estados: string[] = [];
 
     loadDeputados(): Observable<boolean> {
         return this.http.get("/api/search")
@@ -25,22 +24,20 @@ export class DataService {
             )
     }
 
-    loadPartidos(): Observable<boolean> {
+    loadPartidos(): Observable<string[]> {
         return this.http.get("/api/search/partidos")
             .pipe(
                 map((data: any[]) => {
-                    this.partidos = data;
-                    return true;
+                    return data;
                 })
             )
     }
 
-    loadEstados(): Observable<boolean> {
+    loadEstados(): Observable<string[]> {
         return this.http.get("/api/search/estados")
             .pipe(
                 map((data: any[]) => {
-                    this.estados = data;
-                    return true;
+                    return data;
                 })
             )
     }
@@ -53,5 +50,41 @@ export class DataService {
                     return true;
                 })
             );
+    }
+
+    getDetailedDeputado(id: number): Observable<DetailedDeputado> {
+        return this.http.get("/api/deputado/"+id)
+        .pipe(
+            map((data: DetailedDeputado) => {
+                return data;
+            })
+        );
+    }
+
+    populateDespesasDetailedDeputado(id: number): Observable<DetailedDeputado> {
+        return this.http.get("/api/deputado/"+id+"?populateDespesas=true")
+        .pipe(
+            map((data: DetailedDeputado) => {
+                return data;
+            })
+        );
+    }
+
+    populateFrentesDetailedDeputado(id: number): Observable<DetailedDeputado> {
+        return this.http.get("/api/deputado/"+id+"?populateFrentes=true")
+        .pipe(
+            map((data: DetailedDeputado) => {
+                return data;
+            })
+        );
+    }
+
+    populateOrgaosDetailedDeputado(id: number): Observable<DetailedDeputado> {
+        return this.http.get("/api/deputado/"+id+"?populateOrgaos=true")
+        .pipe(
+            map((data: DetailedDeputado) => {
+                return data;
+            })
+        );
     }
 }

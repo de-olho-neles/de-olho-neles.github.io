@@ -19,11 +19,11 @@ namespace server.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int id, bool populateDespesas = false, bool populateFrentes = false, bool populateOrgaos = false)
         {
             try
             {
-                return Ok(_repository.GetDeputadoById(id));
+                return Ok(_repository.GetDeputadoById(id, populateDespesas, populateFrentes, populateOrgaos));
             }
             catch (Exception ex)
             {

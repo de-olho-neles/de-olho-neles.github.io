@@ -1,0 +1,17 @@
+<div class="accordion" id="accordion">
+    <div *ngFor="let frente of frentes" class="card">
+        <div class="card-header" [attr.id]="'headingOne'+frente.id">
+            <button class="btn btn-sm" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+frente.id" aria-expanded="false"
+                aria-controls="collapseOne">+</button>
+            <h5 class="ml-3 d-inline">{{frente.titulo}}</h5>
+        </div>
+
+        <div [attr.id]="'collapse'+frente.id" class="collapse" [attr.aria-labelledby]="'headingOne'+frente.id" data-parent="#accordion">
+            <div class="card-body">
+                <p>ID: {{frente.id}}</p>
+                <p>ID Legislatura: {{frente.idLegislatura}}</p>
+                <p>URL do Partido: <a href="{{frente.uri}}" target="_blank">{{frente.uri}}</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.toApplyStyles {
+    background-color: #B6D6CC;
+    border-top: solid 1px #FB6107;
+}
+
+p {
+    color: #FB6107;
+    font-size: 0.8em
+}

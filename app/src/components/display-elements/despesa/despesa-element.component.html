@@ -1,0 +1,21 @@
+<div class="accordion" id="accordion">
+    <div *ngFor="let despesa of despesas" class="card">
+        <div class="card-header" [attr.id]="'headingOne'+despesa.codDocumento">
+            <button class="btn btn-sm" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+despesa.codDocumento" aria-expanded="false"
+                aria-controls="collapseOne">+</button>
+            <h5 class="ml-3 d-inline">{{despesa.nomeFornecedor}} - {{despesa.mes}}/{{despesa.ano}} - {{despesa.valorDocumento}}</h5>
+        </div>
+
+        <div [attr.id]="'collapse'+despesa.codDocumento" class="collapse" [attr.aria-labelledby]="'headingOne'+despesa.codDocumento" data-parent="#accordion">
+            <div class="card-body">
+                <p>Despesa: {{despesa.tipoDespesa}}</p>
+                <p>Fornecedor: {{despesa.nomeFornecedor}}</p>
+                <p>CPF do fornecedor: {{despesa.cnpjCpfFornecedor}}</p>
+                <p>Código do documento: {{despesa.codDocumento}}</p>
+                <p>Data: {{despesa.dataDocumento}}</p>
+                <p>Tipo de documento: {{despesa.tipoDocumento}}</p>
+                <p>Valor total: {{despesa.valorDocumento}}</p>
+            </div>
+        </div>
+    </div>
+</div>

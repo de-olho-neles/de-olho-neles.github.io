@@ -9,6 +9,5 @@ import { Deputado } from "../../shared/deputado";
 
 export class ListResultComponent implements OnInit {
     @Input() deputado: Deputado;
-    ngOnInit(){
-    }
+    ngOnInit(){}
 }

@@ -10,6 +10,13 @@ import { SearchComponent } from '../components/search/search.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { SearchListComponent } from '../components/search-list/search-list.component';
 import { ListResultComponent } from '../components/list-result/list-result.component';
+import { FooterComponent } from '../components/footer-bar/footer-bar.component';
+import { HomeComponent } from '../components/home/home.component';
+import { DeputadoDisplayComponent } from '../components/deputado-display/deputado-display.component';
+import { LoadingAnimationComponent } from '../components/loading-animation/loading-animation.component';
+import { FrenteElementComponent } from '../components/display-elements/frente/frente-element.component';
+import { OrgaoElementComponent } from '../components/display-elements/orgao/orgao-element.component';
+import { DespesaElementComponent } from '../components/display-elements/despesa/despesa-element.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +24,14 @@ import { ListResultComponent } from '../components/list-result/list-result.compo
     SearchComponent,
     HeaderComponent,
     SearchListComponent,
-    ListResultComponent
+    ListResultComponent,
+    FooterComponent,
+    HomeComponent,
+    DeputadoDisplayComponent,
+    LoadingAnimationComponent,
+    FrenteElementComponent,
+    OrgaoElementComponent,
+    DespesaElementComponent
   ],
   imports: [
     BrowserModule,

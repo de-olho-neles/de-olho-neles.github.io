@@ -1,0 +1,34 @@
+.colorApply {
+    color: #FB6107;
+}
+
+.lead {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.toApplyStyles {
+    background-color: #B6D6CC;
+    border: 1px solid #FB6107;
+    border-radius: 5px;
+}
+img {
+    border-radius: 2px;
+}
+
+.nav-link {
+    color: #FB6107;
+}
+
+a.active {
+    background-color: #F1FEC6 !important;
+    border: solid 1px #FB6107;
+    color: #FB6107 !important;
+}
+
+.ficha {
+    border: 1px solid #FB6107;
+    background-color: #F1FEC6 !important;
+    color: #FB6107 !important;
+    border-radius: 5px;
+}
