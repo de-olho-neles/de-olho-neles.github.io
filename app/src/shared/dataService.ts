@@ -14,6 +14,7 @@ export class DataService {
 
     public deputados: Deputado[] = [];
 
+    //Basic search and display information functions
     loadDeputados(): Observable<boolean> {
         return this.http.get("/api/search")
             .pipe(
@@ -43,7 +44,7 @@ export class DataService {
     }
 
     searchDeputados(query: string): Observable<boolean> {
-        return this.http.get("/api"+query)
+        return this.http.get("/api" + query)
             .pipe(
                 map((data: any[]) => {
                     this.deputados = data;
@@ -53,38 +54,74 @@ export class DataService {
     }
 
     getDetailedDeputado(id: number): Observable<DetailedDeputado> {
-        return this.http.get("/api/deputado/"+id)
-        .pipe(
-            map((data: DetailedDeputado) => {
-                return data;
-            })
-        );
+        return this.http.get("/api/deputado/" + id)
+            .pipe(
+                map((data: DetailedDeputado) => {
+                    return data;
+                })
+            );
     }
 
     populateDespesasDetailedDeputado(id: number): Observable<DetailedDeputado> {
-        return this.http.get("/api/deputado/"+id+"?populateDespesas=true")
-        .pipe(
-            map((data: DetailedDeputado) => {
-                return data;
-            })
-        );
+        return this.http.get("/api/deputado/" + id + "?populateDespesas=true")
+            .pipe(
+                map((data: DetailedDeputado) => {
+                    return data;
+                })
+            );
     }
 
     populateFrentesDetailedDeputado(id: number): Observable<DetailedDeputado> {
-        return this.http.get("/api/deputado/"+id+"?populateFrentes=true")
-        .pipe(
-            map((data: DetailedDeputado) => {
-                return data;
-            })
-        );
+        return this.http.get("/api/deputado/" + id + "?populateFrentes=true")
+            .pipe(
+                map((data: DetailedDeputado) => {
+                    return data;
+                })
+            );
     }
 
     populateOrgaosDetailedDeputado(id: number): Observable<DetailedDeputado> {
-        return this.http.get("/api/deputado/"+id+"?populateOrgaos=true")
-        .pipe(
-            map((data: DetailedDeputado) => {
-                return data;
-            })
-        );
+        return this.http.get("/api/deputado/" + id + "?populateOrgaos=true")
+            .pipe(
+                map((data: DetailedDeputado) => {
+                    return data;
+                })
+            );
+    }
+
+    //Implementing login
+    private token: string = "";
+    private tokenExpiration: Date;
+
+    public get loginRequired(): boolean {
+        return this.token.length == 0 || this.tokenExpiration > new Date();
+    }
+
+    login(credentials): Observable<boolean> {
+        return this.http
+            .post("/api/account/login", credentials)
+            .pipe(
+                map((data: any) => {
+                    this.token = data.token;
+                    this.tokenExpiration = data.tokenExpiration;
+                    return true;
+                })
+            );
+    }
+
+    logout() {
+        this.token = "";
+        this.tokenExpiration = new Date();
+    }
+
+    signup(credentials): Observable<boolean> {
+        return this.http
+            .post("/api/account/signup", credentials)
+            .pipe(
+                map((data: any) => {
+                    console.log(data);
+                    return true;
+                })
+            );
     }
 }

@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="card text-center container my-5 col-md-3 p-0">
+
+        <div class="card-header">Signup</div>
+
+        <div *ngIf="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
+        <form class="card-body mt-5" #theForm="ngForm" novalidate>
+
+            <!-- Email form section -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="123deoliveira4@email.com" aria-label="email-area"
+                       aria-describedby="email-area" [(ngModel)]="credentials.email" #email="ngModel" name="email"
+                       required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="email-area">Email</span>
+                </div>
+            </div>
+            <div class="text-danger mb-3" *ngIf="email.touched && email.invalid && email.errors.required">É necessario um email</div>
+
+            <!-- Password form section -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="ABCabc!#$%" aria-label="password-area"
+                       aria-describedby="password-area" [(ngModel)]="credentials.password" #password="ngModel" name="pass"
+                       required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="password-area">Senha</span>
+                </div>
+            </div>
+            <div class="text-danger mb-3" *ngIf="password.touched && password.invalid && password.errors.required">É necessaria uma senha</div>
+
+            <!-- Remember me section -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="ABCabc!#$%" aria-label="password-area-2"
+                       aria-describedby="password-area-2" [(ngModel)]="passwordConfirmation" #password2="ngModel" name="pass2"
+                       required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="password-area-2">Repetir senha</span>
+                </div>
+            </div>
+            <div class="text-danger mb-3" *ngIf="password2.touched && password2.invalid && password2.errors.required">É necessaria uma senha</div>
+
+            <button class="btn btn-success mt-5" (click)="onSignup()"
+                    [disabled]="theForm.invalid">
+                Signup
+            </button>
+
+        </form>
+
+        <div class="card-footer">Já possui conta ? <a href="/login">Faça o login</a></div>
+
+    </div>
+</div>

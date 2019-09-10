@@ -1,12 +1,9 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using server.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +14,13 @@ using Microsoft.Extensions.Configuration;
 namespace server.Controllers
 {
     [Route("api/[controller]")]
-    public class AccountController : Controller
+    public class LoginController : Controller
     {
         private readonly Microsoft.AspNetCore.Identity.SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
         private readonly IConfiguration _config;
 
-        public AccountController(SignInManager<Usuario> signInManager,
+        public LoginController(SignInManager<Usuario> signInManager,
             UserManager<Usuario> userManager,
             IConfiguration config)
         {
@@ -32,8 +29,8 @@ namespace server.Controllers
             _config = config;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]LoginParams param)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]LoginParams param)
         {
             if (param != null)
             {
@@ -72,26 +69,6 @@ namespace server.Controllers
                 }
             }
 
-            return BadRequest();
-        }
-
-        [HttpPost("signup")]
-        public async Task<IActionResult> Signup([FromBody]LoginParams param){
-            if (param != null)
-	        {
-                var user = await _userManager.FindByEmailAsync(param.Email);
-                if (user == null)
-	            {
-                    user = new Usuario {
-
-                        UserName = param.Email,
-                        Email = param.Email
-                    };
-                    var result = await _userManager.CreateAsync(user, param.Password);
-                    return Created("", result);
-	            }
-                return Conflict();
-	        }
             return BadRequest();
         }
     }

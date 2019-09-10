@@ -2,3 +2,9 @@
     background-color: #B6D6CC;
     border-bottom: solid 1px #FB6107;
 }
+
+.btn {
+    border: solid 1px #FB6107;
+    background-color: #F1FEC6;
+    color: #FB6107;
+}

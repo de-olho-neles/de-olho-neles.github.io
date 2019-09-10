@@ -38,6 +38,9 @@ namespace server
             })
                 .AddEntityFrameworkStores<UserContext>();
 
+            services.AddAuthentication()
+                .AddJwtBearer();
+
             services.AddDbContext<UserContext>(cfg =>
             {
                 cfg.UseSqlServer(_config.GetConnectionString("UserConnectionString"));

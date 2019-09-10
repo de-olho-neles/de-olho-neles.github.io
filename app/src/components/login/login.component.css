@@ -1,0 +1,30 @@
+.card {
+    background-color: #B6D6CC;
+    border: solid 1px #FB6107;
+    color: #FB6107;
+}
+
+.card-footer, .card-header {
+    border-color: #FB6107;
+    color: #FB6107;
+}
+
+input, .input-group-text, .btn {
+    background-color: #F1FEC6;
+    border: solid 1px #FB6107;
+    color: #FB6107;
+}
+
+    input:focus {
+        background-color: #F1FEC6;
+        color: #FB6107;
+    }
+
+    input::placeholder {
+        color: rgba(251, 97, 7, 0.5);
+    }
+
+.squareRightCorners {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}

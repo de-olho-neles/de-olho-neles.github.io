@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="card text-center container my-5 col-md-3 p-0">
+
+        <div class="card-header">Login</div>
+
+        <div *ngIf="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
+        <form class="card-body mt-5" #theForm="ngForm" novalidate>
+
+            <!-- Email form section -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="123deoliveira4@gmail.com" aria-label="email-area"
+                       aria-describedby="email-area" [(ngModel)]="credentials.email" #email="ngModel" name="email"
+                       required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="email-area">Email</span>
+                </div>
+            </div>
+            <div class="text-danger mb-3" *ngIf="email.touched && email.invalid && email.errors.required">É necessario um email</div>
+
+            <!-- Password form section -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="ABCabc!#$%" aria-label="password-area"
+                       aria-describedby="password-area" [(ngModel)]="credentials.password" #password="ngModel" name="pass"
+                       required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="password-area">Senha</span>
+                </div>
+            </div>
+            <div class="text-danger mb-3" *ngIf="password.touched && password.invalid && password.errors.required">É necessaria uma senha</div>
+
+            <!-- Remember me section -->
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text squareRightCorners">Remember me ?</span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="remember-me" [(ngModel)]="credentials.remember"
+                               name="remember">
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-5" (click)="onLogin()"
+                    [disabled]="theForm.invalid">
+                Login
+            </button>
+
+        </form>
+
+        <div class="card-footer">Ainda não possui conta? <a href="/signup">Cadastre-se</a></div>
+
+    </div>
+</div>

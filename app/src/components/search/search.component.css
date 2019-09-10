@@ -5,7 +5,7 @@ input, input:focus {
 }
 
 ::placeholder {
-    color: #FB6107;
+    color: rgba(251, 97, 7, 0.5);
 }
 
 #go {

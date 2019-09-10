@@ -1,6 +1,6 @@
 <div class="d-inline-flex">
 
-    <div class="input-group mb-3">
+    <div class="input-group">
         <input type="text" (keydown.enter)="searchButtonClicked()" class="form-control" placeholder="Deputado's name"
             [(ngModel)]="searchText">
         <div class="input-group-append" style="cursor: pointer" (click)="searchButtonClicked()">
@@ -12,7 +12,7 @@
 <div class="d-inline-flex">
 
     <div class="px-2">
-        <div class="input-group mb-3">
+        <div class="input-group">
             <div class="input-group-prepend">
                 <button class="btn" type="button" data-toggle="collapse"
                     data-target=".dropTartget1">Partido</button>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="px-2">
-        <div class="input-group mb-3">
+        <div class="input-group">
             <div class="input-group-prepend">
                 <button class="btn" type="button" data-toggle="collapse"
                     data-target=".dropTartget2">Estado</button>
