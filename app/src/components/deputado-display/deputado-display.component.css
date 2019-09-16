@@ -32,3 +32,8 @@ a.active {
     color: #FB6107 !important;
     border-radius: 5px;
 }
+
+.toApplyStyles button {
+    background-color: #F1FEC6 !important;
+    color: #FB6107;
+}

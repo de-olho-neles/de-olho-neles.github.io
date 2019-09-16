@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server.Data;
 
 namespace server.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20190911124724_DetailedDeputadoMigration")]
+    partial class DetailedDeputadoMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,7 +206,7 @@ namespace server.Migrations
 
                     b.Property<string>("ufNascimento");
 
-                    b.Property<int?>("ultimoStatusId");
+                    b.Property<int?>("ultimoStatusid");
 
                     b.Property<string>("uri");
 
@@ -214,7 +216,7 @@ namespace server.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.HasIndex("ultimoStatusId");
+                    b.HasIndex("ultimoStatusid");
 
                     b.ToTable("DetailedDeputado");
                 });
@@ -294,7 +296,7 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Data.Entities.UltimoStatus", b =>
                 {
-                    b.Property<int>("ultimoStatusId")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -326,7 +328,7 @@ namespace server.Migrations
 
                     b.Property<string>("urlFoto");
 
-                    b.HasKey("ultimoStatusId");
+                    b.HasKey("id");
 
                     b.HasIndex("gabineteid");
 
@@ -368,16 +370,12 @@ namespace server.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("UserId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -450,7 +448,7 @@ namespace server.Migrations
 
                     b.HasOne("server.Data.Entities.UltimoStatus", "ultimoStatus")
                         .WithMany()
-                        .HasForeignKey("ultimoStatusId");
+                        .HasForeignKey("ultimoStatusid");
                 });
 
             modelBuilder.Entity("server.Data.Entities.Frente", b =>

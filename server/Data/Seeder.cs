@@ -29,8 +29,7 @@ namespace server.Data
                 user = new Usuario()
                 {
                     Email = "teste@teste.com",
-                    UserName = "PapaFrancisco",
-                    UserId = 12345
+                    UserName = "PapaFrancisco"
                 };
 
                 var result = await _userManager.CreateAsync(user, "Teste123!");

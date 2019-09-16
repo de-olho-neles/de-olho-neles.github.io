@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using server.Data;
 
 namespace server.Controllers
 {
@@ -22,14 +25,17 @@ namespace server.Controllers
         private readonly Microsoft.AspNetCore.Identity.SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
         private readonly IConfiguration _config;
+        private readonly Repository _repository;
 
         public AccountController(SignInManager<Usuario> signInManager,
             UserManager<Usuario> userManager,
-            IConfiguration config)
+            IConfiguration config,
+            Repository repository)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _config = config;
+            _repository = repository;
         }
 
         [HttpPost("login")]
@@ -92,6 +98,21 @@ namespace server.Controllers
 	            }
                 return Conflict();
 	        }
+            return BadRequest();
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost("adddeputado")]
+        public async Task<IActionResult> AddDeputado([FromBody]int id){
+            if (id != null)
+            {
+                var currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+                var deputado = _repository.GetDeputadoById(id, false, false, false);
+                //currentUser.Deputados.Add(deputado);
+                _repository.AddDeputadoToUser(currentUser, deputado);
+                currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+                return Ok(currentUser);
+            }
             return BadRequest();
         }
     }

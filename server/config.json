@@ -3,8 +3,8 @@
     "UserConnectionString": "server=(localdb)\\mssqllocaldb;Database=UserDb;Integrated Security=true;MultipleActiveResultSets=true;"
   },
   "Tokens": {
-    "Key": "jd0zn6cqQQOLFDp5lt9HEwBRTZvWvqLhRLvpCwDlqI3aVXt23Lo-5ZVG2oSt8ZaFBP-xmOz1mV1F4DRSkQc9NkjXtpCpo9wd6zWpcRcSA0vk6rYxtsawx4dVf2KxC0XJ1lp719TJ3na3FupUKJ3QNSxUjY0ZIYUJZm1KGgEASk-Eak_lpuVJNI0MYM1YjZ9mrl70sIdCfL8yV_tCqC3tMVQNfhQyo4IkMJMLZl1SYkQfHPcqBg1fcY-pqHFrCwOeKnLqLiKLxx1GFR2cK6WYiGxEiyHI_FOxnv3PrDjT74fLKRRSCbU6qgaflQwXvKDyDKxT0VDCl8Gso_UcqR3PgQ",
-    "Issuer": "http://localhost:5000",
+    "Key": "ZvWvqLhRLvpCwDlqI3aVXt23Lo-5ZVG2",
+    "Issuer": "localhost",
     "Audience": "users"
   }
 }

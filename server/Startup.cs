@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using server.Data;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,6 +17,8 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using server.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+
 
 namespace server
 {
@@ -39,7 +42,15 @@ namespace server
                 .AddEntityFrameworkStores<UserContext>();
 
             services.AddAuthentication()
-                .AddJwtBearer();
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = _config["Tokens:Issuer"],
+                        ValidAudience = _config["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                    };
+                });
 
             services.AddDbContext<UserContext>(cfg =>
             {

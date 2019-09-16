@@ -8,3 +8,12 @@
     background-color: #F1FEC6;
     color: #FB6107;
 }
+
+#profile-icon {
+    background: url(/assets/profile.svg) no-repeat top right;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}

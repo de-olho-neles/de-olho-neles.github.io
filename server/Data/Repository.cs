@@ -12,6 +12,13 @@ namespace server.Data
 {
     public class Repository
     {
+        private readonly UserContext _userContext;
+
+        public Repository(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
         internal JArray GetFullJsonResponse(string url)
         {
             string nextPage = "";
@@ -63,7 +70,7 @@ namespace server.Data
             {
                 if ((deputado.nome.ToLower().Contains(name.ToLower())) &&
                     (deputado.siglaPartido.ToLower().Contains(partido.ToLower())) &&
-                    (deputado.siglaUf.ToLower().Contains(estado.ToLower()))                    )
+                    (deputado.siglaUf.ToLower().Contains(estado.ToLower())))
                 {
                     filteredDeputados.Add(deputado);
                 }
@@ -86,9 +93,9 @@ namespace server.Data
             JObject parsedResult = JObject.Parse(client.DownloadString(url));
             DetailedDeputado data = parsedResult["dados"].ToObject<DetailedDeputado>();
 
-            if (populateDespesas) { data.despesas = GetDespesasFromDeputado(id);}
-            if (populateFrentes) {data.frentes = GetFrentesFromDeputado(id);}
-            if (populateOrgaos) {data.orgaos = GetOrgaosFromDeputado(id);}
+            if (populateDespesas) { data.despesas = GetDespesasFromDeputado(id); }
+            if (populateFrentes) { data.frentes = GetFrentesFromDeputado(id); }
+            if (populateOrgaos) { data.orgaos = GetOrgaosFromDeputado(id); }
 
 
             return data;
@@ -129,6 +136,22 @@ namespace server.Data
             List<Estado> data = GetFullJsonResponse(url).ToObject<List<Estado>>();
             var v = data.Select(x => x.sigla).ToList();
             return v;
+        }
+
+        //Login functionalities
+        internal Boolean AddDeputadoToUser(Usuario user, DetailedDeputado deputado)
+        {
+            //checking if the deputado is alreadyy added
+            var userOnDb = _userContext.Users.SingleOrDefault(u => u.Email == user.Email);
+            var result = userOnDb.Deputados.Find(x => x == deputado);
+            //if the deputado is not added yet
+            if (result == null)
+            {
+                userOnDb.Deputados.Add(deputado);
+                _userContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

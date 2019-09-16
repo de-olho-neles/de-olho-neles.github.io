@@ -8,6 +8,7 @@ namespace server.Data.Entities
 {
     public class Despesa
     {
+        public int id { get; set; }
         public int ano { get; set; }
         public int mes { get; set; }
         public string tipoDespesa { get; set; }

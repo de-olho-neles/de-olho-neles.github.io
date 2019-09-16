@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,9 @@ namespace server.Data.Entities
         public UltimoStatus ultimoStatus { get; set; }
         public string cpf { get; set; }
         public string sexo { get; set; }
-        public object urlWebsite { get; set; }
-        public List<object> redeSocial { get; set; }
+        public string urlWebsite { get; set; }
         public string dataNascimento { get; set; }
-        public object dataFalecimento { get; set; }
+        public string dataFalecimento { get; set; }
         public string ufNascimento { get; set; }
         public string municipioNascimento { get; set; }
         public string escolaridade { get; set; }
@@ -28,6 +28,7 @@ namespace server.Data.Entities
     }
     public class Gabinete
     {
+        public int id { get; set; }
         public string nome { get; set; }
         public string predio { get; set; }
         public string sala { get; set; }
@@ -38,7 +39,8 @@ namespace server.Data.Entities
 
     public class UltimoStatus
     {
-        public int id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ultimoStatusId { get; set; }
         public string uri { get; set; }
         public string nome { get; set; }
         public string siglaPartido { get; set; }
@@ -52,7 +54,7 @@ namespace server.Data.Entities
         public Gabinete gabinete { get; set; }
         public string situacao { get; set; }
         public string condicaoEleitoral { get; set; }
-        public object descricaoStatus { get; set; }
+        public string descricaoStatus { get; set; }
     }
 }
 

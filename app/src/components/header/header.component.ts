@@ -1,5 +1,4 @@
 import { OnInit, Component } from "@angular/core"
-import { DataService } from 'src/shared/dataService';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,17 +9,12 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
 
-    constructor(private dataService: DataService, private router: Router) { }
+    constructor(private router: Router) { }
 
-    public buttonText = "Login";
     ngOnInit() {
     }
-    ngDoCheck() {
-        this.dataService.loginRequired ? this.buttonText = "Login" : this.buttonText = "Logout";
-    }
 
-    logButtonClicked() {
-        if (this.dataService.loginRequired) { this.router.navigateByUrl("login") }
-        else { this.dataService.logout() }
+    profileButtonClicked() {
+        this.router.navigateByUrl("profile");
     }
 }

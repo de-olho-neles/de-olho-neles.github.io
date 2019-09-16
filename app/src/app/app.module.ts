@@ -19,6 +19,7 @@ import { OrgaoElementComponent } from '../components/display-elements/orgao/orga
 import { DespesaElementComponent } from '../components/display-elements/despesa/despesa-element.component';
 import { LoginComponent } from '../components/login/login.component';
 import { SignupComponent } from '../components/signup/signup.component';
+import { ProfileComponent } from '../components/profile/profile.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { SignupComponent } from '../components/signup/signup.component';
         OrgaoElementComponent,
         DespesaElementComponent,
         LoginComponent,
+        ProfileComponent,
         SignupComponent
     ],
     imports: [
